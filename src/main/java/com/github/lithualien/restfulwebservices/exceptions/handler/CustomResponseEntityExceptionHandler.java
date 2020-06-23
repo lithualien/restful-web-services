@@ -1,6 +1,7 @@
 package com.github.lithualien.restfulwebservices.exceptions.handler;
 
 import com.github.lithualien.restfulwebservices.exceptions.UnsupportedSymbolException;
+import com.github.lithualien.restfulwebservices.exceptions.ResourceNotFoundException;
 import com.github.lithualien.restfulwebservices.models.ExceptionResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,9 +25,15 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
     }
 
     @ExceptionHandler(UnsupportedSymbolException.class)
-    public final ResponseEntity<ExceptionResponse> handleMathExceptions(Exception exception, WebRequest request) {
+    public final ResponseEntity<ExceptionResponse> handleUnsupportedSymbolExceptions(Exception exception, WebRequest request) {
         ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(), exception.getMessage(),
                 request.getDescription(false));
         return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public final ResponseEntity<ExceptionResponse> handleResourceNotFoundException(Exception exception, WebRequest webRequest) {
+        ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(), exception.getMessage(), webRequest.getDescription(false));
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
     }
 }

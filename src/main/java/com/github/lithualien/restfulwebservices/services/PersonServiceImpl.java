@@ -1,42 +1,51 @@
 package com.github.lithualien.restfulwebservices.services;
 
+import com.github.lithualien.restfulwebservices.exceptions.ResourceNotFoundException;
 import com.github.lithualien.restfulwebservices.models.Person;
+import com.github.lithualien.restfulwebservices.repository.PersonRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class PersonServiceImpl implements PersonService {
 
+    private final PersonRepository personRepository;
+
+    public PersonServiceImpl(PersonRepository personRepository) {
+        this.personRepository = personRepository;
+    }
+
     @Override
     public Person findById(Long id) {
-        return new Person(1L, "Tomas", "Dominauskas", "Tiesos g. 18", "Male");
+        return personRepository.findById(id).<ResourceNotFoundException>orElseThrow(() -> {
+            throw new ResourceNotFoundException("User with id=" + id + " was not found.");
+        });
     }
 
     @Override
     public Set<Person> all() {
-        Set<Person> persons = new HashSet<>();
-        persons.add(new Person(1L, "Tomas", "Dominauskas", "Tiesos g. 18", "Male"));
-        persons.add(new Person(2L, "Tomas", "Dominauskas", "Tiesos g. 18", "Male"));
-        persons.add(new Person(3L, "Tomas", "Dominauskas", "Tiesos g. 18", "Male"));
-        persons.add(new Person(4L, "Tomas", "Dominauskas", "Tiesos g. 18", "Male"));
-        persons.add(new Person(5L, "Tomas", "Dominauskas", "Tiesos g. 18", "Male"));
-        persons.add(new Person(6L, "Tomas", "Dominauskas", "Tiesos g. 18", "Male"));
-        return persons;
+        return StreamSupport
+                .stream(personRepository.findAll().spliterator(), false)
+                .collect(Collectors.toSet());
     }
 
     @Override
-    public Person create(Person person) {
-        return person;
+    public Person save(Person person) {
+        return personRepository.save(person);
     }
 
     @Override
     public Person update(Person person) {
-        return person;
+        Person entity = findById(person.getId());
+        entity = person;
+        return personRepository.save(entity);
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Long id) {;
+        Person entity = findById(id);
+        personRepository.delete(entity);
     }
 }

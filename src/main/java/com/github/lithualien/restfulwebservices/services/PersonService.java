@@ -8,7 +8,7 @@ public interface PersonService {
 
     Person findById(Long id);
     Set<Person> all();
-    Person create(Person person);
+    Person save(Person person);
     Person update(Person person);
     void delete(Long id);
 }
