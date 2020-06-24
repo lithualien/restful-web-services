@@ -13,30 +13,30 @@ public class PersonController {
 
     private final PersonService personService;
     private final NumberConverter numberConverter;
-    private final BeanFactory beanFactory;
 
-    public PersonController(PersonService personService, NumberConverter numberConverter, BeanFactory beanFactory) {
+    public PersonController(PersonService personService, NumberConverter numberConverter) {
         this.personService = personService;
         this.numberConverter = numberConverter;
-        this.beanFactory = beanFactory;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}", produces = { "application/json", "application/xml", "application/x-yaml" })
     public PersonVO findById(@PathVariable("id") String id) {
         return personService.findById(numberConverter.stringToLong(id));
     }
 
-    @GetMapping
+    @GetMapping(produces = { "application/json", "application/xml", "application/x-yaml" })
     public Set<PersonVO> all() {
         return personService.all();
     }
 
-    @PostMapping("/v1")
+    @PostMapping(produces = { "application/json", "application/xml", "application/x-yaml" },
+            consumes = { "application/json", "application/xml", "application/x-yaml" })
     public PersonVO save(@RequestBody PersonVO person) {
         return personService.save(person);
     }
 
-    @PutMapping
+    @PutMapping(produces = { "application/json", "application/xml", "application/x-yaml" },
+            consumes = { "application/json", "application/xml", "application/x-yaml" })
     public PersonVO update(@RequestBody PersonVO person) {
         return personService.update(person);
     }
