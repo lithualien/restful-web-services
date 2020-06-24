@@ -1,14 +1,15 @@
 package com.github.lithualien.restfulwebservices.services;
 
 import com.github.lithualien.restfulwebservices.models.Person;
+import com.github.lithualien.restfulwebservices.models.vo.PersonVO;
 
 import java.util.Set;
 
 public interface PersonService {
 
-    Person findById(Long id);
-    Set<Person> all();
-    Person save(Person person);
-    Person update(Person person);
+    PersonVO findById(Long id);
+    Set<PersonVO> all();
+    PersonVO save(PersonVO person);
+    PersonVO update(PersonVO person);
     void delete(Long id);
 }

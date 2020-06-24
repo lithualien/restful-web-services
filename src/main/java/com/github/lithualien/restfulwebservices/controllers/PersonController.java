@@ -2,6 +2,7 @@ package com.github.lithualien.restfulwebservices.controllers;
 
 import com.github.lithualien.restfulwebservices.converter.NumberConverter;
 import com.github.lithualien.restfulwebservices.models.Person;
+import com.github.lithualien.restfulwebservices.models.vo.PersonVO;
 import com.github.lithualien.restfulwebservices.services.PersonService;
 import org.springframework.web.bind.annotation.*;
 import java.util.Set;
@@ -19,22 +20,22 @@ public class PersonController {
     }
 
     @GetMapping("/{id}")
-    public Person findById(@PathVariable("id") String id) {
+    public PersonVO findById(@PathVariable("id") String id) {
         return personService.findById(numberConverter.stringToLong(id));
     }
 
     @GetMapping
-    public Set<Person> all() {
+    public Set<PersonVO> all() {
         return personService.all();
     }
 
     @PostMapping
-    public Person save(@RequestBody Person person) {
+    public PersonVO save(@RequestBody PersonVO person) {
         return personService.save(person);
     }
 
     @PutMapping
-    public Person update(@RequestBody Person person) {
+    public PersonVO update(@RequestBody PersonVO person) {
         return personService.update(person);
     }
 
