@@ -4,6 +4,7 @@ import com.github.lithualien.restfulwebservices.converter.DozerConverter;
 import com.github.lithualien.restfulwebservices.exceptions.ResourceNotFoundException;
 import com.github.lithualien.restfulwebservices.models.Person;
 import com.github.lithualien.restfulwebservices.models.vo.PersonVO;
+import com.github.lithualien.restfulwebservices.models.vo.v2.PersonVOWithBirthday;
 import com.github.lithualien.restfulwebservices.repository.PersonRepository;
 import org.springframework.stereotype.Service;
 import java.util.Set;
