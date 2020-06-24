@@ -1,7 +1,7 @@
 package com.github.lithualien.restfulwebservices.mocks;
 
 import com.github.lithualien.restfulwebservices.models.Person;
-import com.github.lithualien.restfulwebservices.models.vo.PersonVO;
+import com.github.lithualien.restfulwebservices.models.vo.v1.PersonVO;
 
 import java.util.HashSet;
 import java.util.Set;

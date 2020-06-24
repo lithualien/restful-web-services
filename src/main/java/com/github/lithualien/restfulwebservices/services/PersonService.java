@@ -1,7 +1,6 @@
 package com.github.lithualien.restfulwebservices.services;
 
-import com.github.lithualien.restfulwebservices.models.Person;
-import com.github.lithualien.restfulwebservices.models.vo.PersonVO;
+import com.github.lithualien.restfulwebservices.models.vo.v1.PersonVO;
 
 import java.util.Set;
 

@@ -4,7 +4,6 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -31,17 +30,4 @@ public class Person implements Serializable {
     @Column(nullable = false)
     private String gender;
 
-
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (!(o instanceof Person)) return false;
-//        Person person = (Person) o;
-//        return Objects.equals(id, person.id);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(id);
-//    }
 }
