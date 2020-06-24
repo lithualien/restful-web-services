@@ -34,7 +34,7 @@ class DozerConverterTest {
 
     @Test
     void parseSetToVO() {
-        Set<PersonVO> output = DozerConverter.parseSets(
+        Set<PersonVO> output = DozerConverter.parseSet(
                 mockPerson.personSet(),
                 PersonVO.class
         );
@@ -52,7 +52,7 @@ class DozerConverterTest {
 
     @Test
     void parseVOToSet() {
-        Set<Person> output = DozerConverter.parseSets(
+        Set<Person> output = DozerConverter.parseSet(
                 mockPerson.personVOSet(),
                 Person.class
         );

@@ -15,7 +15,7 @@ public class DozerConverter {
         return mapper.map(origin, destination);
     }
 
-    public static <O, D>  Set<D> parseSets(Set<O> origin, Class<D> destination) {
+    public static <O, D>  Set<D> parseSet(Set<O> origin, Class<D> destination) {
         Set<D> destinationObject = new HashSet<>();
         origin
                 .forEach(e -> destinationObject.add(mapper.map(e, destination)));
