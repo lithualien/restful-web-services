@@ -12,17 +12,20 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 @JsonPropertyOrder({"id", "address", "first_name", "last_name", "gender"})
 public class PersonVO extends RepresentationModel<PersonVO> implements Serializable {
 
     @Mapping("id")
     @JsonProperty("id")
     private Long key;
+
     @JsonProperty("first_name")
     private String firstName;
+
     @JsonProperty("last_name")
     private String lastName;
+
     private String address;
     private String gender;
 }

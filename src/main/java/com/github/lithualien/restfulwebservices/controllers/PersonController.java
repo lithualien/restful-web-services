@@ -15,16 +15,14 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class PersonController {
 
     private final PersonService personService;
-    private final NumberConverter numberConverter;
 
-    public PersonController(PersonService personService, NumberConverter numberConverter) {
+    public PersonController(PersonService personService) {
         this.personService = personService;
-        this.numberConverter = numberConverter;
     }
 
     @GetMapping(path = "/{id}", produces = { "application/json", "application/xml", "application/x-yaml" })
     public PersonVO findById(@PathVariable("id") String id) {
-        PersonVO entity = personService.findById(numberConverter.stringToLong(id));
+        PersonVO entity = personService.findById(id);
         entity.add(
                 linkTo(methodOn(PersonController.class).findById(id)).withSelfRel()
         );
@@ -63,8 +61,8 @@ public class PersonController {
         return entity;
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(path = "/{id}")
     public void delete(@PathVariable("id") String id) {
-        personService.delete(numberConverter.stringToLong(id));
+        personService.delete(id);
     }
 }

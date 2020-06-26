@@ -6,9 +6,9 @@ import java.util.Set;
 
 public interface PersonService {
 
-    PersonVO findById(Long id);
+    PersonVO findById(String id);
     Set<PersonVO> all();
     PersonVO save(PersonVO person);
     PersonVO update(PersonVO person);
-    void delete(Long id);
+    void delete(String id);
 }

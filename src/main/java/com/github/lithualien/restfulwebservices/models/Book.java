@@ -1,30 +1,27 @@
 package com.github.lithualien.restfulwebservices.models;
 
 import lombok.*;
-
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 
+@Entity
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
-@Getter
-@Entity
 @EqualsAndHashCode
-@Table(name = "persons")
-public class Person implements Serializable {
+@Table(name = "books")
+public class Book implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String author;
 
-    @Column(name = "first_name")
-    private String firstName;
+    @Column(name="launch_date")
+    private LocalDate launchDate;
 
-    @Column(name = "last_name")
-    private String lastName;
-
-    private String address;
-    private String gender;
-
+    private Float price;
+    private String title;
 }
