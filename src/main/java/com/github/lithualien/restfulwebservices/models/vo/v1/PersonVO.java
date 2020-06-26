@@ -2,7 +2,10 @@ package com.github.lithualien.restfulwebservices.models.vo.v1;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.github.dozermapper.core.Mapping;
 import lombok.*;
+import org.springframework.hateoas.RepresentationModel;
+
 import java.io.Serializable;
 
 @NoArgsConstructor
@@ -11,9 +14,11 @@ import java.io.Serializable;
 @Setter
 @EqualsAndHashCode
 @JsonPropertyOrder({"id", "address", "first_name", "last_name", "gender"})
-public class PersonVO implements Serializable {
+public class PersonVO extends RepresentationModel<PersonVO> implements Serializable {
 
-    private Long id;
+    @Mapping("id")
+    @JsonProperty("id")
+    private Long key;
     @JsonProperty("first_name")
     private String firstName;
     @JsonProperty("last_name")

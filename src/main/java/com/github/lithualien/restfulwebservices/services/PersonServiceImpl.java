@@ -45,7 +45,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public PersonVO update(PersonVO person) {
-        findById(person.getId()); // it is better to rewrite (duplicate code) or to reuse the code and not refer the result, to throw Resource not found exception
+        findById(person.getKey()); // it is better to rewrite (duplicate code) or to reuse the code and not refer the result, to throw Resource not found exception
         Person entity = DozerConverter.parseObject(person, Person.class);
         person = DozerConverter.parseObject(personRepository.save(entity), PersonVO.class);
         return person;
