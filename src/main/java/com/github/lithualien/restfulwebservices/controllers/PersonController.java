@@ -1,6 +1,5 @@
 package com.github.lithualien.restfulwebservices.controllers;
 
-import com.github.lithualien.restfulwebservices.converter.NumberConverter;
 import com.github.lithualien.restfulwebservices.models.vo.v1.PersonVO;
 import com.github.lithualien.restfulwebservices.services.PersonService;
 import org.springframework.web.bind.annotation.*;

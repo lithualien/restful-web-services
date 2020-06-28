@@ -7,9 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Getter
 @Setter
@@ -29,6 +27,7 @@ public class User implements UserDetails, Serializable {
 
     @Column(name = "full_name")
     private String fullName;
+
     private String password;
 
     @Column(name = "account_non_expired")
@@ -42,8 +41,7 @@ public class User implements UserDetails, Serializable {
 
     private Boolean enabled;
 
-    @JsonManagedReference
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_permissions", joinColumns =
             { @JoinColumn(name = "id_user") }, inverseJoinColumns =
             { @JoinColumn(name = "id_permission") })
@@ -82,5 +80,13 @@ public class User implements UserDetails, Serializable {
     @Override
     public boolean isEnabled() {
         return this.enabled;
+    }
+
+    public List<String> getRoles() {
+        List<String> roles = new ArrayList<>();
+        for(Permission permission : permissions) {
+            roles.add(permission.getDescription());
+        }
+        return roles;
     }
 }
